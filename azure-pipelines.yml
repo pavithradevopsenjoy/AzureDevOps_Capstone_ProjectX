@@ -33,13 +33,12 @@ stages:
       name: self-hosted-agent
     steps:    
     - script: |
-        python3.7 -m venv ~/.project2
-        source ~/.project2/bin/activate
-        pip install --upgrade pip
-        pip install setup
+        python -m venv .project2
+        .project2\Scripts\activate
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade setuptools
+        python -m pip install --upgrade wheel
         pip install -r requirements.txt
-        python3.7 venv project2
-        source project2/bin/activate
         make install
         make lint
       workingDirectory: $(projectRoot)
