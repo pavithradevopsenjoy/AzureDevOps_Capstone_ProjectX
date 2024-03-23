@@ -9,7 +9,7 @@ trigger:
 
 variables:
   # TODO: Replace the service connection name as used in the DevOps project settings
-  azureServiceConnectionId: '89c80f95-5303-45cc-967b-c0f7413a033b'
+  azureServiceConnectionId: '0cb1cc64-f004-4a83-abce-140acf058763'
 
   azureSubscription: 'cacd532b-7d19-4626-839b-4a0c4bead353'
 
