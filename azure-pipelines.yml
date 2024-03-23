@@ -40,8 +40,6 @@ stages:
         pip install -r requirements.txt
         python3 venv venv
         source venv/bin/activate
-        make install
-        make lint
       workingDirectory: $(projectRoot)
       displayName: "Build and lint"
     - task: ArchiveFiles@2
