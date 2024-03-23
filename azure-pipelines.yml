@@ -30,7 +30,7 @@ stages:
   jobs:
   - job: BuildAndDeployJob
     pool: 
-      vmImage: $(vmImageName)
+      name: self-hosted-agent
     steps:    
     - script: |
         python3.7 -m venv ~/.project2
