@@ -33,13 +33,14 @@ stages:
       name: self-hosted-agent
     steps:    
     - script: |
-        python3 -m venv ~/.venv
-        source ~/.venv/bin/activate
-        pip install --upgrade pip
-        pip install setup
+        python -m venv .venv
+        .venv\Scripts\activate
+        python -m pip install --upgrade pip
+        python -m pip install --upgrade setuptools
+        python -m pip install --upgrade wheel
         pip install -r requirements.txt
-        python3 venv venv
-        source venv/bin/activate
+        make install
+        make lint
       workingDirectory: $(projectRoot)
       displayName: "Build and lint"
     - task: ArchiveFiles@2
