@@ -11,9 +11,9 @@ variables:
   # TODO: Replace the service connection name as used in the DevOps project settings
   azureServiceConnectionId: '9a39ed9e-dc55-4ee1-a3e1-d0a8ab24c832'
 
-  azureSubscription: 'df56a173-611b-429d-901a-af369d7d59b5'
+  azureSubscription: 'cacd532b-7d19-4626-839b-4a0c4bead353'
 
-  azureTenantId: 'f958e84a-92b8-439f-a62d-4f45996b6d07'
+  azureTenantId: 'cd4481eb-7a1b-4014-a4b5-9a6356f6c062'
 
 
   
