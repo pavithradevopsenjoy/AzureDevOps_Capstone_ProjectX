@@ -6,6 +6,8 @@
 trigger:
 - main
 
+pool: myAgentPool
+
 variables:
   # TODO: Replace the service connection name as used in the DevOps project settings
   azureServiceConnectionId: '9a39ed9e-dc55-4ee1-a3e1-d0a8ab24c832'
