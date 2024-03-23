@@ -61,7 +61,7 @@ stages:
   jobs:
   - deployment: DeploymentJob
     pool:
-      vmImage: $(vmImageName)
+      name: self-hosted-agent
     environment: $(environmentName)
     strategy:
       runOnce:
