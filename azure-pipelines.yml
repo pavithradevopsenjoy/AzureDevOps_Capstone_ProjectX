@@ -6,7 +6,6 @@
 trigger:
 - main
 
-
 variables:
   # TODO: Replace the service connection name as used in the DevOps project settings
   azureServiceConnectionId: '0cb1cc64-f004-4a83-abce-140acf058763'
@@ -15,8 +14,6 @@ variables:
 
   azureTenantId: 'cd4481eb-7a1b-4014-a4b5-9a6356f6c062'
 
-
-  
   # TODO: Specify the value of the existing Web App name
   webAppName: 'flask-appservice2024032301'
 
@@ -83,6 +80,6 @@ stages:
             - task: AzureWebApp@1
               displayName: 'Deploy Azure Web App : $(webAppName)'
               inputs:
-                azureSubscription: $(azureServiceConnectionId)
+                azureSubscription: $(azureSubscription)
                 appName: $(webAppName)
                 package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
