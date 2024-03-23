@@ -18,13 +18,13 @@ variables:
 
   
   # TODO: Specify the value of the existing Web App name
-  webAppName: 'flask-appservice20240323'
+  webAppName: 'flask-appservice2024032301'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
   # Environment name
-  environmentName: 'flask-appservice20240323'
+  environmentName: 'flask-appservice2024032301'
 
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
