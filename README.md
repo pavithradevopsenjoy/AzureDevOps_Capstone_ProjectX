@@ -9,7 +9,7 @@ This repository guides you through setting up a robust Continuous Integration an
 
 ## Instructions
 
-![alt text](Architecture.drawio.png)
+![alt text](/images/Architecture.drawio.pngArchitecture.drawio.png)
 
 Setup of project and Github Actions for Continuous Integration:
 
@@ -104,7 +104,7 @@ Run Github Actions:
 
 ## Setting up Azure Devops for CD (Setting up pipelines for build and deployment)
 
-Due to restrictions in Azure DevOps (Pipeline runs will fail - due to no parallelism of the lab environment) it is recommended to setup a self-hosted agent running on your local machine.
+Due to restrictions in Azure DevOps via Udacity (Pipeline runs will fail - due to no parallelism of the lab environment) it is recommended to setup a self-hosted agent running on your local machine.
 
 1. Download the agent
 `https://vstsagentpackage.azureedge.net/agent/3.236.1/vsts-agent-win-x64-3.236.1.zip`
