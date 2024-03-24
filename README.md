@@ -21,17 +21,17 @@
 
 ![alt text](image.png)
 
-1. cd into the project `cd AzureDevOps_Capstone_Project_02`
+2. cd into the project `cd AzureDevOps_Capstone_Project_02`
 
 ![alt text](image-1.png)
 
-1. Create the python virtual environment: 
+3. Create the python virtual environment: 
 `python3 -m venv ~/.AzureDevOps_Capstone_Project_02`
 `source ~/.AzureDevOps_Capstone_Project_02/bin/activate`
 
 ![alt text](image-2.png)
 
-1. run make commands:
+4. run make commands:
 
 `make install`
 
@@ -41,20 +41,28 @@
 
 ![alt text](image-4.png)
 
-1. run az cli command to create Azure App Service from cloud shell:
+5. run az cli command to create Azure App Service from cloud shell:
 
 `az webapp up --name flask-appservice-<youruniqueID> --resource-group Azuredevops --runtime "PYTHON:3.10"`
 
 ![alt text](image-5.png)
 
-1. Run make_predict_azure_app.sh
+6. Run make_predict_azure_app.sh
 
 `chmod +x make_predict_azure_app.sh`
 `./make_predict_azure_app.sh`
 
 ![alt text](image-6.png)
 
-1. You can stream the log data via the cloud shell: `az webapp log tail`
+7. Run pytest 
+
+`python -m pytest -vv test.py`
+
+![alt text](image-7.png)
+
+8. You can stream the log data via the cloud shell: `az webapp log tail`
+
+![alt text](image-8.png)
 
 * Project running on Azure App Service
 
