@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # TODO: Replace the service connection name as used in the DevOps project settings
-  azureServiceConnectionId: '4fad5dc4-da9e-42dd-bafc-0a1a0368fe13'
+  azureServiceConnectionId: '4ef73aef-4d78-4ef3-b146-7d7ccb52d007'
 #test
   # TODO: Specify the value of the existing Web App name
   webAppName: 'flask-appservice-2024032401'
