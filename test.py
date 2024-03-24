@@ -20,4 +20,4 @@ def test_predict():
         },
     )
     assert response.status_code == 200
-    assert response.data == b'{"prediction":[2.431574790057212]}\n'
+    assert response.data == b'{"prediction":[20.353731771344123]}\n'

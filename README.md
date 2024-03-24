@@ -47,6 +47,13 @@
 
 ![alt text](image-5.png)
 
+1. Run make_predict_azure_app.sh
+
+`chmod +x make_predict_azure_app.sh`
+`./make_predict_azure_app.sh`
+
+![alt text](image-6.png)
+
 1. You can stream the log data via the cloud shell: `az webapp log tail`
 
 * Project running on Azure App Service
