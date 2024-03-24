@@ -15,6 +15,34 @@
 
 <TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
 
+
+
+1. Open Azure Cloud Shell and clone repository from github: `git clone https://github.com/juppgo/AzureDevOps_Capstone_Project_02.git`
+
+![alt text](image.png)
+
+1. cd into the project `cd AzureDevOps_Capstone_Project_02`
+
+![alt text](image-1.png)
+
+1. Create the python virtual environment: 
+`python3 -m venv ~/.AzureDevOps_Capstone_Project_02`
+`source ~/.AzureDevOps_Capstone_Project_02/bin/activate`
+
+![alt text](image-2.png)
+
+1. run make commands:
+
+`make install`
+
+![alt text](image-3.png)
+
+`make all`
+
+1. run az cli command to create Azure App Service from cloud shell:
+
+`az webapp up --name flask-appservice-<youruniqueID> --resource-group Azuredevops --runtime "PYTHON:3.10"`
+
 * Project running on Azure App Service
 
 * Project cloned into Azure Cloud Shell
