@@ -4,8 +4,8 @@ This repository guides you through setting up a robust Continuous Integration an
 
 ## Project Plan
 
-* link to a Trello board for the project: https://trello.com/invite/b/Z1Xqh4GZ/ATTI87e9339f9c90f6fd330cdede91e790860D9683A4/azuredevops-capstone02
-* A link to a spreadsheet that includes the original and final project plan: https://github.com/juppgo/AzureDevOps_Capstone_Project_02/raw/main/documents/project-management.xlsx
+* link to a Trello board for the project: [Trello board](https://trello.com/invite/b/Z1Xqh4GZ/ATTI87e9339f9c90f6fd330cdede91e790860D9683A4/azuredevops-capstone02)
+* A link to a spreadsheet that includes the original and final project plan: [Excel Sheet](https://github.com/juppgo/AzureDevOps_Capstone_Project_02/raw/main/documents/project-management.xlsx)
 
 ## Instructions
 
@@ -154,6 +154,5 @@ Detailed instructions: `https://go.microsoft.com/fwlink/?LinkID=825113`
 
 ## Demo 
 
-<TODO: Add link Screencast on YouTube>
-
+[Application Demo Video on Youtube](https://youtu.be/PILhpua8Sk8)
 
