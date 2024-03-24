@@ -47,6 +47,8 @@
 
 ![alt text](image-5.png)
 
+![alt text](image-10.png)
+
 6. Run make_predict_azure_app.sh
 
 `chmod +x make_predict_azure_app.sh`
@@ -79,6 +81,8 @@
 3. Run locust
 
 `locust --headless --users 1 --spawn-rate 1 -H https://flask-appservice-2024032401.azurewebsites.net.azurewebsites.net`
+
+![alt text](image-9.png)
 
 
 * Project running on Azure App Service
