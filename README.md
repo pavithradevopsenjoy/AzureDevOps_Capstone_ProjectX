@@ -39,9 +39,15 @@
 
 `make all`
 
+![alt text](image-4.png)
+
 1. run az cli command to create Azure App Service from cloud shell:
 
 `az webapp up --name flask-appservice-<youruniqueID> --resource-group Azuredevops --runtime "PYTHON:3.10"`
+
+![alt text](image-5.png)
+
+1. You can stream the log data via the cloud shell: `az webapp log tail`
 
 * Project running on Azure App Service
 
