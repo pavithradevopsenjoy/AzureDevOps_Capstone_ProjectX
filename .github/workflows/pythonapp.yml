@@ -15,10 +15,13 @@ jobs:
         python-version: 3.10.13
     - name: Install dependencies
       run: |
+        cd ./Part_01
         make install
     - name: Lint with pylint
       run: |
+        cd ./Part_01
         make lint
     - name: Test with pytest
       run: |
+        cd ./Part_01
         make test

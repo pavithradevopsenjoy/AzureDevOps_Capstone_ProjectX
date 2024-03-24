@@ -25,6 +25,22 @@
 
 ![alt text](image-1.png)
 
+Run Github Actions:
+
+1. cd into Part_01 directory `cd Part01`
+
+2. Create and activate python venv: 
+
+`python3 -m venv ~/.Part_01`
+`source ~/.Part_01/bin/activate`
+
+3. Run Make commands:
+
+`make all`
+`make test`
+
+Setup Azure App Service
+
 3. Create the python virtual environment: 
 `python3 -m venv ~/.AzureDevOps_Capstone_Project_02`
 `source ~/.AzureDevOps_Capstone_Project_02/bin/activate`
