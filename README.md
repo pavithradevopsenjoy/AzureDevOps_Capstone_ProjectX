@@ -64,6 +64,23 @@
 
 ![alt text](image-8.png)
 
+- Load Test Application with Locust
+
+1. Create and activate python venv
+
+`python3 -m venv .locust`
+`source .locust/bin/activate`
+
+2. Install Locust
+
+`source .locust/bin/activate`
+`pip install locust`
+
+3. Run locust
+
+`locust --headless --users 1 --spawn-rate 1 -H https://flask-appservice-2024032401.azurewebsites.net.azurewebsites.net`
+
+
 * Project running on Azure App Service
 
 * Project cloned into Azure Cloud Shell
