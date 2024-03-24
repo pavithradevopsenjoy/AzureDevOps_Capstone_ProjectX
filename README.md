@@ -9,7 +9,7 @@ This repository guides you through setting up a robust Continuous Integration an
 
 ## Instructions
 
-![alt text](/images/Architecture.drawio.pngArchitecture.drawio.png)
+![alt text](images\Architecture.drawio.png)
 
 Setup of project and Github Actions for Continuous Integration:
 
