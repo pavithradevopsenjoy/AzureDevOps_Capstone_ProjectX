@@ -1,17 +1,16 @@
 # Overview
 
-<TODO: complete this with an overview of your project>
+This repository guides you through setting up a robust Continuous Integration and Continuous Delivery pipeline using GitHub Actions and Azure DevOps. By following the steps outlined here, you'll establish a seamless workflow for linting, testing, building, and deploying a python Machine learning application for housing price predictions to Azure App Service.
 
 ## Project Plan
 <TODO: Project Plan
 
-* A link to a Trello board for the project
-* A link to a spreadsheet that includes the original and final project plan>
+* link to a Trello board for the project: https://trello.com/invite/b/Z1Xqh4GZ/ATTI87e9339f9c90f6fd330cdede91e790860D9683A4/azuredevops-capstone02
+* A link to a spreadsheet that includes the original and final project plan:
 
 ## Instructions
 
-<TODO:  
-* Architectural Diagram (Shows how key parts of the system work)>
+![alt text](Architecture.drawio.png)
 
 <TODO:  Instructions for running the Python project.  How could a user with no context run this project without asking you for any help.  Include screenshots with explicit steps to create that work. Be sure to at least include the following screenshots:
 
@@ -37,7 +36,9 @@ Run Github Actions:
 3. Run Make commands:
 
 `make all`
-`make test`
+![alt text](image-11.png)
+
+[![Python application test with Github Actions](https://github.com/juppgo/AzureDevOps_Capstone_Project_02/actions/workflows/pythonapp.yml/badge.svg)](https://github.com/juppgo/AzureDevOps_Capstone_Project_02/actions/workflows/pythonapp.yml)
 
 Setup Azure App Service
 
@@ -100,35 +101,55 @@ Setup Azure App Service
 
 ![alt text](image-9.png)
 
+Azure Devops:
 
-* Project running on Azure App Service
+Due to restrictions in Azure DevOps (Pipeline runs will fail - due to no parallelism of the lab environment) it is recommended to setup a self-hosted agent running on your local machine.
 
-* Project cloned into Azure Cloud Shell
+1. Download the agent
+`https://vstsagentpackage.azureedge.net/agent/3.236.1/vsts-agent-win-x64-3.236.1.zip`
 
-* Passing tests that are displayed after running the `make all` command from the `Makefile`
+2. Create the agent
 
-* Output of a test run
+`PS C:\> mkdir agent
+PS C:\> cd agent
+PS C:\agent> Add-Type -AssemblyName System.IO.Compression.FileSystem ; [System.IO.Compression.ZipFile]::ExtractToDirectory("$HOME\Downloads\vsts-agent-win-x64-3.236.1.zip", "$PWD")`
 
-* Successful deploy of the project in Azure Pipelines.  [Note the official documentation should be referred to and double checked as you setup CI/CD](https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/python-webapp?view=azure-devops).
+3. Configure the agent
+`PS C:\agent> .\config.cmd`
+Detailed instructions: `https://go.microsoft.com/fwlink/?LinkID=825113`
+
+4. Run the agent:
+`PS C:\agent> .\run.cmd`
+
+![alt text](image-12.png)
+
+
 
 * Running Azure App Service from Azure Pipelines automatic deployment
 
-* Successful prediction from deployed flask app in Azure Cloud Shell.  [Use this file as a template for the deployed prediction](https://github.com/udacity/nd082-Azure-Cloud-DevOps-Starter-Code/blob/master/C2-AgileDevelopmentwithAzure/project/starter_files/flask-sklearn/make_predict_azure_app.sh).
-The output should look similar to this:
+1. Create Service connection. Go to project settings. Click on Create service connection. Choose Azure Resource Manager and Service principal (automatic):
 
-```bash
-udacity@Azure:~$ ./make_predict_azure_app.sh
-Port: 443
-{"prediction":[20.35373177134412]}
-```
+![alt text](image-13.png)
 
-* Output of streamed log files from deployed application
+2. Retrieve service connection resource id from service connection url:
 
-> 
+![alt text](image-14.png)
+
+3. Edit pipeline line 11 and change the service connection id:
+
+![alt text](image-15.png)
+
+4. Click on validate and save pipeline.
+
+5. Check pipeline run:
+
+![alt text](image-16.png)
+
 
 ## Enhancements
 
-<TODO: A short description of how to improve the project in the future>
+- Create a dockerfile to run application on managed PAAS services like Azure Container Apps on Azure
+- Create a helm chart to run application on AKS
 
 ## Demo 
 
