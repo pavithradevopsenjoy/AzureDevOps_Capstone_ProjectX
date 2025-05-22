@@ -1,76 +1,101 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
 variables:
-  # TODO: Replace the service connection name as used in the DevOps project settings
   azureServiceConnectionId: '4ef73aef-4d78-4ef3-b146-7d7ccb52d007'
-#test
-  # TODO: Specify the value of the existing Web App name
-  webAppName: 'flask-appservice-2024032401'
-
-  # Agent VM image name
+  stagingWebAppName: 'flask-appservice-2024032401'
+  productionWebAppName: 'flask-appservice-prod-2024032401'
   vmImageName: 'ubuntu-latest'
-
-  # Environment name
-  environmentName: 'flask-appservice-2024032401'
-
-  # Project root folder. Point to the folder containing manage.py file.
+  stagingEnvironmentName: 'flask-staging-env'
+  productionEnvironmentName: 'flask-prod-env'
   projectRoot: $(System.DefaultWorkingDirectory)
-
   pythonVersion: '3.10'
 
 stages:
-- stage: Build
-  displayName: Build and Deploy stage
+- stage: BuildAndTest
+  displayName: Build and Test
   jobs:
-  - job: BuildAndDeployJob
-    pool: 
+  - job: BuildTestJob
+    pool:
       name: self-hosted-agent
-    steps:    
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        version: '3.10'
+        architecture: 'x64'
+
     - script: |
         python -m venv .venv
-        .venv\Scripts\activate
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade setuptools
-        python -m pip install --upgrade wheel
+        source .venv/bin/activate
+        pip install --upgrade pip setuptools wheel
         pip install -r requirements.txt
         make install
         make lint
       workingDirectory: $(projectRoot)
-      displayName: "Build and lint"
+      displayName: "Build and Lint"
+
+    - script: |
+        source .venv/bin/activate
+        pytest tests/ --junitxml=test-results/results.xml
+      workingDirectory: $(projectRoot)
+      displayName: "Run Unit Tests"
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: '**/test-results/results.xml'
+        testRunTitle: 'Python Unit Tests'
+
     - task: ArchiveFiles@2
-      displayName: 'Archive files'
+      displayName: 'Archive Files'
       inputs:
         rootFolderOrFile: '$(projectRoot)'
         includeRootFolder: false
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      displayName: 'Upload package'
+
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+      displayName: 'Publish Artifact'
       artifact: drop
-- stage: Deploy
-  displayName: 'Deploy Web App'
-  dependsOn: Build
+
+- stage: DeployStaging
+  displayName: Deploy to Staging
+  dependsOn: BuildAndTest
   condition: succeeded()
   jobs:
-  - deployment: DeploymentJob
+  - deployment: StagingDeploy
+    environment: $(stagingEnvironmentName)
     pool:
       name: self-hosted-agent
-    environment: $(environmentName)
     strategy:
       runOnce:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : $(webAppName)'
+            displayName: 'Deploy to Staging Web App'
             inputs:
               azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
+              appName: $(stagingWebAppName)
+              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              deploymentMethod: zipDeploy
+
+- stage: DeployProduction
+  displayName: Deploy to Production
+  dependsOn: DeployStaging
+  condition: succeeded()
+  jobs:
+  - deployment: ProdDeploy
+    environment: $(productionEnvironmentName)  # Approval must be set in DevOps > Environments
+    pool:
+      name: self-hosted-agent
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            displayName: 'Deploy to Production Web App'
+            inputs:
+              azureSubscription: $(azureServiceConnectionId)
+              appName: $(productionWebAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               deploymentMethod: zipDeploy
